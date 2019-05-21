@@ -2,12 +2,29 @@ import pandas as pd
 import random
 import re
 from nltk.stem import WordNetLemmatizer
+import os
 
-def load_cook_train_data(data_path, validation_split=0.2, seed=42, isLemmatize=False):
+dir_path = os.path.dirname(os.path.realpath(__file__))
+print(dir_path)
+data_dir_path = os.path.join(dir_path, '../cook-prediction')
+print(data_dir_path)
+train_data_file = os.path.realpath(os.path.join(data_dir_path, 'train.json'))
+print(train_data_file)
+test_data_file = os.path.realpath(os.path.join(data_dir_path, 'test.json'))
+print(test_data_file)
+
+def load_cook_train_data(validation_split=0.2, isLemmatize=False):
+    return _load_cook_train_data(train_data_file, 
+                                 validation_split=validation_split, 
+                                 isLemmatize=isLemmatize)
+def load_cook_test_data(isLemmatize=False):
+    return _load_cook_test_data(test_data_file, isLemmatize=isLemmatize)
+
+def _load_cook_train_data(data_path, validation_split=0.2, seed=42, isLemmatize=False):
     data = pd.read_json(data_path)
     class_names = list(data.cuisine.unique())
 
-    data = _filter_data(data)
+    # data = _filter_data(data)
     data = _lower_texts(data)
     train_texts = data.ingredients.apply(lambda x: _text_transform(x, isLemmatize)).values
 
@@ -20,7 +37,7 @@ def load_cook_train_data(data_path, validation_split=0.2, seed=42, isLemmatize=F
 
     return class_names, _split_train_and_validation_data(train_texts, train_labels, validation_split)
 
-def load_cook_test_data(data_path, isLemmatize=False):
+def _load_cook_test_data(data_path, isLemmatize=False):
     data = pd.read_json(data_path)
 
     data = _lower_texts(data)

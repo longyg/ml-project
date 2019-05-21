@@ -3,6 +3,16 @@ from sklearn.multiclass import OneVsRestClassifier
 import load_data
 import vectorize_data
 
+from sklearn.neural_network import MLPClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.gaussian_process import GaussianProcessClassifier
+from sklearn.gaussian_process.kernels import RBF
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
+
 def train_svc_model(data):
     (train_texts, train_labels), (val_texts, val_labels) = data
     x_train, x_val = vectorize_data.tfidf_vectorize(train_texts, train_labels, val_texts)
@@ -21,7 +31,35 @@ def train_svc_model(data):
     classifier.fit(x_train, train_labels)
     return classifier.score(x_val, val_labels)
 
+def train_multiple_models(data):
+    (train_texts, train_labels), (val_texts, val_labels) = data
+    x_train, x_val = vectorize_data.tfidf_vectorize(train_texts, train_labels, val_texts)
+    # x_train = x_train.toarray()
+    # x_val = x_val.toarray()
+
+    names = [
+            #  "Nearest Neighbors", "Linear SVM", "RBF SVM", 
+            #  "Gaussian Process",
+             "Decision Tree", "Random Forest", "Neural Net", "AdaBoost",
+             "Naive Bayes", "QDA"
+            ]
+    classifiers = [
+                    # KNeighborsClassifier(8),
+                    # SVC(kernel="linear", C=0.025),
+                    # SVC(gamma=2, C=1),
+                    # GaussianProcessClassifier(1.0 * RBF(1.0)),
+                    DecisionTreeClassifier(max_depth=5),
+                    RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1),
+                    MLPClassifier(alpha=1),
+                    AdaBoostClassifier(),
+                    GaussianNB(),
+                    QuadraticDiscriminantAnalysis()
+                ]
+    for name, clf in zip(names, classifiers):
+        clf.fit(x_train, train_labels)
+        score = clf.score(x_val, val_labels)
+        print(name, " ===> ",  score)
+
 if __name__ == '__main__':
-    class_names, data = load_data.load_cook_train_data('E:\\workspace\\notebook\\ml-project\\cook-prediction\\train.json', isLemmatize=True)
-    score = train_svc_model(data)
-    print(score)
+    class_names, data = load_data.load_cook_train_data(isLemmatize=True)
+    train_multiple_models(data)

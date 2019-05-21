@@ -20,7 +20,8 @@ def tfidf_vectorize(train_texts, train_labels, val_texts, ngram_range=NGRAM_RANG
         'decode_error': 'replace',
         'analyzer': TOKEN_MODE,
         'min_df': min_df,
-        'sublinear_tf': True
+        'sublinear_tf': True,
+        'stop_words': 'english'
     }
     vectorizer = TfidfVectorizer(**kwargs)
 

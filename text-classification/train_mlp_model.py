@@ -57,7 +57,7 @@ def train_mlp_model(data,
 
 if __name__ == '__main__':
     nltk.download('wordnet')
-    class_names, data = load_data.load_cook_train_data('E:\\workspace\\notebook\\ml-project\\cook-prediction\\train.json', isLemmatize=True)
+    class_names, data = load_data.load_cook_train_data(isLemmatize=True)
     print(class_names)
     train_mlp_model(data)
 

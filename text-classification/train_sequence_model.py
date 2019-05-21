@@ -68,6 +68,6 @@ def train_sequence_model(data,
     return history['val_acc'][-1], history['val_loss'][-1]
 
 if __name__ == '__main__':
-    class_names, data = load_data.load_cook_train_data('E:\\workspace\\notebook\\ml-project\\cook-prediction\\train.json', isLemmatize=True)
+    class_names, data = load_data.load_cook_train_data(isLemmatize=True)
     print(class_names)
     train_sequence_model(data)
