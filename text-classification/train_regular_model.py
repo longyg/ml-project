@@ -17,6 +17,8 @@ from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 def train_svc_model(data):
     (train_texts, train_labels), (val_texts, val_labels) = data
     x_train, x_val = vectorize_data.tfidf_vectorize(train_texts, train_labels, val_texts)
+    x_train = x_train.toarray()
+    x_val = x_val.toarray()
 
     estimator = SVC(C=300,
                     kernel='rbf',
@@ -39,16 +41,16 @@ def train_multiple_models(data):
     # x_val = x_val.toarray()
 
     names = [
-            #  "Nearest Neighbors", "Linear SVM", "RBF SVM", 
-            #  "Gaussian Process",
+             "Nearest Neighbors", "Linear SVM", "RBF SVM", 
+             "Gaussian Process",
              "Decision Tree", "Random Forest", "Neural Net", "AdaBoost",
              "Naive Bayes", "QDA"
             ]
     classifiers = [
-                    # KNeighborsClassifier(8),
-                    # SVC(kernel="linear", C=0.025),
-                    # SVC(gamma=2, C=1),
-                    # GaussianProcessClassifier(1.0 * RBF(1.0)),
+                    KNeighborsClassifier(8),
+                    SVC(kernel="linear", C=0.025),
+                    SVC(gamma=2, C=300),
+                    GaussianProcessClassifier(1.0 * RBF(1.0)),
                     DecisionTreeClassifier(max_depth=5),
                     RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1),
                     MLPClassifier(alpha=1),

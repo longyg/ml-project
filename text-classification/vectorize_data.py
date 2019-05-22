@@ -5,6 +5,8 @@ from sklearn.feature_selection import f_classif
 from tensorflow.keras.preprocessing import text
 from tensorflow.keras.preprocessing import sequence
 
+import numpy as np
+
 NGRAM_RANGE = (1, 2)
 TOP_K = 20000
 TOKEN_MODE = 'word'
@@ -15,7 +17,7 @@ MAX_SEQUENCE_LENGTH = 500
 def tfidf_vectorize(train_texts, train_labels, val_texts, ngram_range=NGRAM_RANGE, min_df=MIN_DOCUMENT_FREQUENCY):
     kwargs = {
         'ngram_range': ngram_range,
-        'dtype': 'float32',
+        'dtype': np.float64,
         'strip_accents': 'unicode',
         'decode_error': 'replace',
         'analyzer': TOKEN_MODE,
