@@ -2418,7 +2418,7 @@ id,cuisine
 49613,vietnamese
 45149,indian
 38610,indian
-18111,southern_us
+18111,cajun_creole
 35670,italian
 30349,japanese
 12034,chinese
@@ -7592,7 +7592,7 @@ id,cuisine
 40971,italian
 26403,indian
 45138,korean
-27629,cajun_creole
+27629,southern_us
 16379,italian
 39698,mexican
 43697,french
@@ -8272,7 +8272,7 @@ id,cuisine
 43736,southern_us
 43841,italian
 17547,mexican
-1014,russian
+1014,french
 16213,cajun_creole
 27984,southern_us
 16158,chinese
@@ -8384,7 +8384,7 @@ id,cuisine
 39758,southern_us
 42449,vietnamese
 22877,chinese
-23264,mexican
+23264,southern_us
 26064,french
 9606,italian
 7595,korean
@@ -8694,7 +8694,7 @@ id,cuisine
 8839,italian
 36245,mexican
 14797,mexican
-5268,thai
+5268,mexican
 10358,french
 10036,spanish
 37307,mexican
