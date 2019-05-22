@@ -1,0 +1,5 @@
+active-user-prediction/.ipynb_checkpoints/
+cook-prediction/.ipynb_checkpoints/
+titanic/.ipynb_checkpoints/
+text-classification/__pycache__/
+*.h5
