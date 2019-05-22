@@ -1,3 +1,4 @@
+import nltk
 from sklearn.svm import SVC
 from sklearn.multiclass import OneVsRestClassifier
 import load_data
@@ -61,5 +62,6 @@ def train_multiple_models(data):
         print(name, " ===> ",  score)
 
 if __name__ == '__main__':
+    nltk.download('wordnet')
     class_names, data = load_data.load_cook_train_data(isLemmatize=True)
     train_multiple_models(data)
