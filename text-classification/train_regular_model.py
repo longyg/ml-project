@@ -17,8 +17,6 @@ from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 def train_svc_model(data):
     (train_texts, train_labels), (val_texts, val_labels) = data
     x_train, x_val = vectorize_data.tfidf_vectorize(train_texts, train_labels, val_texts)
-    x_train = x_train.toarray()
-    x_val = x_val.toarray()
 
     estimator = SVC(C=300,
                     kernel='rbf',
@@ -37,8 +35,8 @@ def train_svc_model(data):
 def train_multiple_models(data):
     (train_texts, train_labels), (val_texts, val_labels) = data
     x_train, x_val = vectorize_data.tfidf_vectorize(train_texts, train_labels, val_texts)
-    # x_train = x_train.toarray()
-    # x_val = x_val.toarray()
+    x_train = x_train.toarray()
+    x_val = x_val.toarray()
 
     names = [
              "Nearest Neighbors", "Linear SVM", "RBF SVM", 
