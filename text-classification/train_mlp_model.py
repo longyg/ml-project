@@ -23,7 +23,7 @@ def train_mlp_model(data,
                          'labels in the validation set are in the same range '
                          'as training labels.'.format(unexpected_labels=unexpected_labels))
        
-    x_train, x_val = vectorize_data.tfidf_vectorize(train_texts, train_labels, val_texts, ngram_range=(1, 1))
+    x_train, x_val = vectorize_data.tfidf_vectorize(train_texts, train_labels, val_texts)
 
     model = build_model.mlp_model(layers=layers,
                                   units=units,
