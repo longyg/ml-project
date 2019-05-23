@@ -17,7 +17,7 @@ MAX_SEQUENCE_LENGTH = 500
 def tfidf_vectorize(train_texts, train_labels, val_texts, ngram_range=NGRAM_RANGE, min_df=MIN_DOCUMENT_FREQUENCY):
     kwargs = {
         'ngram_range': ngram_range,
-        'dtype': np.float64,
+        'dtype': np.float32,
         'strip_accents': 'unicode',
         'decode_error': 'replace',
         'analyzer': TOKEN_MODE,

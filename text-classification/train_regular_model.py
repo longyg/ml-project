@@ -16,7 +16,7 @@ from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 
 def train_svc_model(data):
     (train_texts, train_labels), (val_texts, val_labels) = data
-    x_train, x_val = vectorize_data.tfidf_vectorize(train_texts, train_labels, val_texts)
+    x_train, x_val = vectorize_data.tfidf_vectorize(train_texts, train_labels, val_texts, ngram_range=(1, 1))
 
     estimator = SVC(C=300,
                     kernel='rbf',
@@ -28,7 +28,7 @@ def train_svc_model(data):
                     max_iter=-1, 
                     decision_function_shape='ovr',
                     random_state=42)
-    classifier = OneVsRestClassifier(estimator, n_jobs=-1)
+    classifier = OneVsRestClassifier(estimator)
     classifier.fit(x_train, train_labels)
     return classifier.score(x_val, val_labels)
 
