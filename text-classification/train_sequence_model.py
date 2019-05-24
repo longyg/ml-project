@@ -9,11 +9,11 @@ TOP_K = 20000
 
 def train_sequence_model(data,
                          learning_rate=1e-3,
-                         epochs=100,
+                         epochs=1000,
                          batch_size=128,
                          blocks=2,
                          filters=64,
-                         dropout_rate=0.2,
+                         dropout_rate=0.3,
                          embedding_dim=200,
                          kernel_size=3,
                          pool_size=3):

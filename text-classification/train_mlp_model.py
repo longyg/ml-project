@@ -7,11 +7,11 @@ import nltk
 
 def train_mlp_model(data,
                     learning_rate=1e-3,
-                    epochs=100,
+                    epochs=1000,
                     batch_size=128,
                     layers=2,
                     units=64,
-                    dropout_rate=0.2):
+                    dropout_rate=0.3):
     (train_texts, train_labels), (val_texts, val_labels) = data
     
     num_classes = explore_data.get_num_classes(train_labels)
