@@ -56,9 +56,9 @@ def train_multiple_models(data):
                     #     decision_function_shape='ovr',
                     #     random_state=42),
                     # GaussianProcessClassifier(1.0 * RBF(1.0)),
-                    DecisionTreeClassifier(max_depth=5),
-                    RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1),
-                    MLPClassifier(alpha=1),
+                    DecisionTreeClassifier(),
+                    RandomForestClassifier(),
+                    MLPClassifier(early_stopping=True),
                     AdaBoostClassifier(),
                     GaussianNB(),
                     QuadraticDiscriminantAnalysis()
