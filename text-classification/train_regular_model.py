@@ -39,30 +39,30 @@ def train_multiple_models(data):
     # x_val = x_val.toarray()
 
     names = [
-            #  "RBF SVM", 
+             "RBF SVM", 
             #  "Gaussian Process",
              "Decision Tree", "Random Forest", "Neural Net", "AdaBoost",
             #  "Naive Bayes", 
-             "QDA"
+            #  "QDA"
             ]
     classifiers = [
-                    # SVC(C=300,
-                    #     kernel='rbf',
-                    #     gamma=1.5, 
-                    #     shrinking=True, 
-                    #     tol=0.001, 
-                    #     cache_size=1000,
-                    #     class_weight=None,
-                    #     max_iter=-1, 
-                    #     decision_function_shape='ovr',
-                    #     random_state=42),
+                    SVC(C=300,
+                        kernel='rbf',
+                        gamma=1.5, 
+                        shrinking=True, 
+                        tol=0.001, 
+                        cache_size=1000,
+                        class_weight=None,
+                        max_iter=-1, 
+                        decision_function_shape='ovr',
+                        random_state=42),
                     # GaussianProcessClassifier(1.0 * RBF(1.0)),
                     DecisionTreeClassifier(),
                     RandomForestClassifier(),
                     MLPClassifier(early_stopping=True),
                     AdaBoostClassifier(),
                     # GaussianNB(),
-                    QuadraticDiscriminantAnalysis()
+                    # QuadraticDiscriminantAnalysis()
                 ]
     for name, clf in zip(names, classifiers):
         clf.fit(x_train, train_labels)
