@@ -65,8 +65,11 @@ def train_multiple_models(data):
                     # QuadraticDiscriminantAnalysis()
                 ]
     for name, clf in zip(names, classifiers):
-        clf.fit(x_train, train_labels)
-        score = clf.score(x_val, val_labels)
+        classifier = OneVsRestClassifier(clf)
+        classifier.fit(x_train, train_labels)
+        score = classifier.score(x_val, val_labels)
+        # clf.fit(x_train, train_labels)
+        # score = clf.score(x_val, val_labels)
         print(name, " ===> ",  score)
 
 if __name__ == '__main__':
