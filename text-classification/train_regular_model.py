@@ -42,7 +42,8 @@ def train_multiple_models(data):
             #  "RBF SVM", 
             #  "Gaussian Process",
              "Decision Tree", "Random Forest", "Neural Net", "AdaBoost",
-             "Naive Bayes", "QDA"
+            #  "Naive Bayes", 
+             "QDA"
             ]
     classifiers = [
                     # SVC(C=300,
@@ -60,7 +61,7 @@ def train_multiple_models(data):
                     RandomForestClassifier(),
                     MLPClassifier(early_stopping=True),
                     AdaBoostClassifier(),
-                    GaussianNB(),
+                    # GaussianNB(),
                     QuadraticDiscriminantAnalysis()
                 ]
     for name, clf in zip(names, classifiers):
