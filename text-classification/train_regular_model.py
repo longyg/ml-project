@@ -71,4 +71,5 @@ def train_multiple_models(data):
 if __name__ == '__main__':
     nltk.download('wordnet')
     class_names, data = load_data.load_cook_train_data(isLemmatize=True)
-    print(train_svc_model(data))
+    # print(train_svc_model(data))
+    train_multiple_models()
