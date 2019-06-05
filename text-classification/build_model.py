@@ -11,7 +11,7 @@ from tensorflow.keras.layers import SeparableConv1D
 from tensorflow.keras.layers import MaxPooling1D
 from tensorflow.keras.layers import GlobalAveragePooling1D
 
-import tensorflow-hub as tfhub
+import tensorflow_hub as tfhub
 
 def mlp_model(layers, units, dropout_rate, input_shape, num_classes):
     '''
