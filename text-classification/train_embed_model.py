@@ -38,10 +38,10 @@ def train_embed_model(data,
         )
     )
 
-    history = model.fit(training_dataset,
+    history = model.fit(training_dataset.shuffle(1000).batch(512),
                         epochs=epochs,
                         callbacks=callbacks,
-                        validation_data=validation_dataset,
+                        validation_data=validation_dataset.batch(512),
                         verbose=1)
     
     history = history.history
