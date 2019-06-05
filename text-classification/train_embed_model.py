@@ -31,7 +31,7 @@ def train_embed_model(data,
         )
     )
 
-    validation_dataset = tf.data.Dataset.from_tensor_slice(
+    validation_dataset = tf.data.Dataset.from_tensor_slices(
         (
             tf.cast(val_texts, tf.string),
             tf.cast(val_labels, tf.int32)
