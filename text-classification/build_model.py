@@ -11,6 +11,8 @@ from tensorflow.keras.layers import SeparableConv1D
 from tensorflow.keras.layers import MaxPooling1D
 from tensorflow.keras.layers import GlobalAveragePooling1D
 
+import tensorflow-hub as tfhub
+
 def mlp_model(layers, units, dropout_rate, input_shape, num_classes):
     '''
         Build MLP model
@@ -23,6 +25,24 @@ def mlp_model(layers, units, dropout_rate, input_shape, num_classes):
     for _ in range(layers - 1):
         model.add(Dense(units=units, activation='relu'))
         model.add(Dropout(rate=dropout_rate))
+    
+    model.add(Dense(units=op_units, activation=op_activation))
+    return model
+
+def embedding_model(layers, units, num_classes):
+    '''
+        Build Embedding model with existing tensorflow hub model
+    '''
+    op_units, op_activation = _get_output_layer_units_and_activation(num_classes)
+
+    embedding = "https://tfhub.dev/google/tf2-preview/gnews-swivel-20dim/1"
+    hub_layer = tfhub.KerasLayer(embedding, input_shape=[], dtype=tf.string, trainable=True)
+
+    model = Sequential()
+    model.add(hub_layer)
+
+    for _ in range(layers - 1):
+        model.add(Dense(units=units, activation='relu'))
     
     model.add(Dense(units=op_units, activation=op_activation))
     return model
