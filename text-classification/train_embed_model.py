@@ -24,7 +24,7 @@ def train_embed_model(data,
 
     callbacks = [tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=2)]
 
-    training_dataset = tf.data.Dataset.from_tensor_slice(
+    training_dataset = tf.data.Dataset.from_tensor_slices(
         (
             tf.cast(train_texts, tf.string),
             tf.cast(train_labels, tf.int32)
