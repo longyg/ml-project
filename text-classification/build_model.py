@@ -35,7 +35,7 @@ def embedding_model(layers, units, num_classes):
     '''
     op_units, op_activation = _get_output_layer_units_and_activation(num_classes)
 
-    embedding = "https://tfhub.dev/google/tf2-preview/gnews-swivel-20dim/1"
+    embedding = "https://tfhub.dev/google/tf2-preview/nnlm-en-dim128/1"
     hub_layer = tfhub.KerasLayer(embedding, input_shape=[], dtype=tf.string, trainable=True)
 
     model = Sequential()

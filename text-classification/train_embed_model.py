@@ -20,7 +20,7 @@ def train_embed_model(data,
     else:
         loss = 'sparse_categorical_crossentropy'
     optimizer = tf.keras.optimizers.Adam(lr=learning_rate)
-    model.compile(optimizer=optimizer, loss=loss, metrics=['accuracy'])
+    model.compile(optimizer=optimizer, loss=loss, metrics=['acc'])
 
     callbacks = [tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=2)]
 
@@ -53,4 +53,4 @@ def train_embed_model(data,
 if __name__ == '__main__':
     class_names, data = load_data.load_cook_train_data(isLemmatize=True)
     print(class_names)
-    train_embed_model(data)
+    train_embed_model(data, layers=1)
