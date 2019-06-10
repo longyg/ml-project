@@ -53,4 +53,4 @@ def train_embed_model(data,
 if __name__ == '__main__':
     class_names, data = load_data.load_cook_train_data(isLemmatize=True)
     print(class_names)
-    train_embed_model(data, layers=1)
+    train_embed_model(data, layers=1, units=32)

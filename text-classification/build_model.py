@@ -10,6 +10,7 @@ from tensorflow.keras.layers import Embedding
 from tensorflow.keras.layers import SeparableConv1D
 from tensorflow.keras.layers import MaxPooling1D
 from tensorflow.keras.layers import GlobalAveragePooling1D
+from tensorflow.keras import regularizers
 
 import tensorflow_hub as tfhub
 
@@ -42,7 +43,8 @@ def embedding_model(layers, units, num_classes):
     model.add(hub_layer)
 
     for _ in range(layers - 1):
-        model.add(Dense(units=units, activation='relu'))
+        model.add(Dense(units=units, kernel_regularizer=regularizers.l2(0.001), activation='relu'))
+        model.add(Dropout(0.5))
     
     model.add(Dense(units=op_units, activation=op_activation))
     return model
