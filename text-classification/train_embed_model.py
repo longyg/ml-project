@@ -8,12 +8,13 @@ def train_embed_model(data,
                       epochs=1000,
                       batch_size=128,
                       layers=2,
-                      units=64):
+                      units=64,
+                      dropout_rate=0.5):
     (train_texts, train_labels), (val_texts, val_labels) = data
 
     num_classes = explore_data.get_num_classes(train_labels)
 
-    model = build_model.embedding_model(layers, units, num_classes)
+    model = build_model.embedding_model(layers, units, num_classes, dropout_rate)
 
     if num_classes == 2:
         loss = 'binary_crossentropy'
@@ -38,17 +39,18 @@ def train_embed_model(data,
         )
     )
 
-    history = model.fit(training_dataset.shuffle(1000).batch(512),
+    history = model.fit(training_dataset.shuffle(1000).batch(batch_size),
                         epochs=epochs,
-                        callbacks=callbacks,
-                        validation_data=validation_dataset.batch(512),
+#                         callbacks=callbacks,
+                        validation_data=validation_dataset.batch(batch_size),
                         verbose=1)
     
     history = history.history
     print('Validation accuracy: {acc}, loss: {loss}'.format(
         acc=history['val_acc'][-1], loss=history['val_loss'][-1]))
     
-    return history['val_acc'][-1], history['val_loss'][-1]
+#     return history['val_acc'][-1], history['val_loss'][-1]
+    return history
 
 if __name__ == '__main__':
     class_names, data = load_data.load_cook_train_data(isLemmatize=True)

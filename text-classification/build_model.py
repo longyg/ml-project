@@ -30,7 +30,7 @@ def mlp_model(layers, units, dropout_rate, input_shape, num_classes):
     model.add(Dense(units=op_units, activation=op_activation))
     return model
 
-def embedding_model(layers, units, num_classes):
+def embedding_model(layers, units, num_classes, dropout_rate):
     '''
         Build Embedding model with existing tensorflow hub model
     '''
@@ -43,8 +43,8 @@ def embedding_model(layers, units, num_classes):
     model.add(hub_layer)
 
     for _ in range(layers - 1):
-        model.add(Dense(units=units, kernel_regularizer=regularizers.l2(0.001), activation='relu'))
-        model.add(Dropout(0.5))
+        model.add(Dense(units=units, kernel_regularizer=regularizers.l2(0.002), activation='relu'))
+        model.add(Dropout(rate=dropout_rate))
     
     model.add(Dense(units=op_units, activation=op_activation))
     return model

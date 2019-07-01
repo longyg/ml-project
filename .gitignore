@@ -2,4 +2,5 @@ active-user-prediction/.ipynb_checkpoints/
 cook-prediction/.ipynb_checkpoints/
 titanic/.ipynb_checkpoints/
 text-classification/__pycache__/
+text-classification/.ipynb_checkpoints/
 *.h5
